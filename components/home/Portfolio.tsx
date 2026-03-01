@@ -7,8 +7,8 @@ export default function Portfolio() {
       title: "30평형 아파트 전체 실크도배",
       location: "거실 및 주방",
       description: "기존 변색된 벽지를 제거하고, 화이트 톤 실크벽지로 모던하고 넓어 보이게 마감했습니다.",
-      beforeImg: "/portfolio/bf.jpg", // public 폴더 기준 경로
-      afterImg: "/portfolio/af.jpg",
+      beforeImg: "/portfolio/bf.webp", // public 폴더 기준 경로
+      afterImg: "/portfolio/af.webp",
     },
     // 새로운 사례 추가 시 아래 주석을 풀고 내용만 변경하세요.
     /*
