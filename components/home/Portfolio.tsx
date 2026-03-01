@@ -1,4 +1,7 @@
+'use client';
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Portfolio() {
   // 💡 향후 사진을 추가할 때는 이 배열(projects)에 내용만 추가하면 자동으로 화면에 그려집니다.
@@ -22,6 +25,16 @@ export default function Portfolio() {
     */
   ];
 
+  const [modalSrc, setModalSrc] = useState<string | null>(null);
+  const [modalAlt, setModalAlt] = useState("");
+
+  const openModal = (src: string, alt: string) => {
+    setModalSrc(src);
+    setModalAlt(alt);
+  };
+
+  const closeModal = () => setModalSrc(null);
+
   return (
     <section id="portfolio" className="w-full py-24 bg-stone-100 px-6">
       <div className="max-w-6xl mx-auto">
@@ -39,9 +52,12 @@ export default function Portfolio() {
             <div key={index} className="flex flex-col group">
               {/* 이미지 영역: Next.js Image 컴포넌트로 최적화 및 깨짐 방지 */}
               <div className="flex w-full h-64 md:h-80 mb-6 overflow-hidden relative">
-                
+
                 {/* Before 이미지 */}
-                <div className="relative w-1/2 h-full border-r-2 border-white">
+                <div
+                  className="relative w-1/2 h-full border-r-2 border-white cursor-zoom-in"
+                  onClick={() => openModal(project.beforeImg, `${project.title} 시공 전`)}
+                >
                   <Image
                     src={project.beforeImg}
                     alt={`${project.title} 시공 전`}
@@ -54,7 +70,10 @@ export default function Portfolio() {
                 </div>
 
                 {/* After 이미지 */}
-                <div className="relative w-1/2 h-full">
+                <div
+                  className="relative w-1/2 h-full cursor-zoom-in"
+                  onClick={() => openModal(project.afterImg, `${project.title} 시공 후`)}
+                >
                   <Image
                     src={project.afterImg}
                     alt={`${project.title} 시공 후`}
@@ -84,6 +103,36 @@ export default function Portfolio() {
           ))}
         </div>
       </div>
+
+      {/* Lightbox 모달 */}
+      {modalSrc && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+          onClick={closeModal}
+        >
+          {/* 닫기 버튼 */}
+          <button
+            className="absolute top-4 right-4 text-white text-3xl font-bold leading-none hover:text-neutral-300 transition-colors"
+            onClick={closeModal}
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+
+          {/* 이미지 컨테이너 - 클릭 이벤트 전파 차단 */}
+          <div
+            className="relative w-[90vw] h-[80vh] max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={modalSrc}
+              alt={modalAlt}
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
