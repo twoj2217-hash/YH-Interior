@@ -1,3 +1,5 @@
+import FadeIn from '@/components/ui/FadeIn';
+
 export default function Services() {
   const services = [
     {
@@ -21,6 +23,7 @@ export default function Services() {
     <section id="services" className="w-full py-24 bg-white px-6">
       <div className="max-w-6xl mx-auto">
         {/* 섹션 타이틀 */}
+        <FadeIn>
         <div className="text-center mb-16">
           <h2 className="text-sm md:text-base font-light tracking-[0.4em] text-neutral-500 mb-2">
             OUR SERVICES
@@ -29,8 +32,10 @@ export default function Services() {
             전문 시공 서비스
           </h3>
         </div>
+        </FadeIn>
 
         {/* 서비스 카드 그리드 영역 (PC: 3열, 모바일: 1열) */}
+        <FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div 
@@ -52,6 +57,7 @@ export default function Services() {
             </div>
           ))}
         </div>
+        </FadeIn>
       </div>
     </section>
   );

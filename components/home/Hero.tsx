@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import FadeIn from '@/components/ui/FadeIn';
 
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center bg-stone-100 px-6 overflow-hidden">
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#d4d4d4_1px,transparent_1px)] [background-size:24px_24px]"></div>
-      <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
+      <FadeIn className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
         <span className="text-sm md:text-base font-light tracking-[0.4em] text-neutral-500 mb-4">
           INTERIOR
         </span>
@@ -23,7 +24,7 @@ export default function Hero() {
             시공 사례 보기
           </Link>
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import FadeIn from '@/components/ui/FadeIn';
 
 export default function Portfolio() {
   // 💡 향후 사진을 추가할 때는 이 배열(projects)에 내용만 추가하면 자동으로 화면에 그려집니다.
@@ -38,6 +39,7 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="w-full py-24 bg-stone-100 px-6">
       <div className="max-w-6xl mx-auto">
+        <FadeIn>
         <div className="text-center mb-16">
           <h2 className="text-sm md:text-base font-light tracking-[0.4em] text-neutral-500 mb-2">
             PORTFOLIO
@@ -46,7 +48,9 @@ export default function Portfolio() {
             시공 사례
           </h3>
         </div>
+        </FadeIn>
 
+        <FadeIn>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div key={index} className="flex flex-col group">
@@ -102,6 +106,7 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
+        </FadeIn>
       </div>
 
       {/* Lightbox 모달 */}
